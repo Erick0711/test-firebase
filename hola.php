@@ -28,6 +28,7 @@ curl_close($data);
     <tbody>
         <?php foreach ($dataFireBase as $data) { 
             //! DIRECTAMENTE OBTENER A FIREBASE SIN RECORRER CADA DATO
+            // ? 
             if($data['fecha'] == '2022-09-07 11:00'){ 
             ?>
             <tr>
@@ -36,6 +37,8 @@ curl_close($data);
             <td><?= $data['tanque']?></td>
             <td><?= $data['saldo']?></td>
             <tr>
-        <?php }} ?>
+        <?php }
+    }?>
     </tbody>
 </table>
+<script src="./index.js"></script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCetjVj6XG3L1306xRr2gU0ttpwHRuIok4",
+        authDomain: "telemetria-936a5.firebaseapp.com",
+        projectId: "telemetria-936a5",
+        storageBucket: "telemetria-936a5.appspot.com",
+        messagingSenderId: "925409957669",
+        appId: "1:925409957669:web:ea3592bc6c9500450aaccc"
+    };
+    firebase.initializeApp(firebaseConfig);
+    let db = firebase.firestore();
+    let date = new Date();
+    let hour = date.getHours();
+    // for (let cod = 100; cod < 110; cod++) {
+    //     db.collection("medicion-telemetria").add(
+    //         {
+    //             codigo: cod,
+    //             tanque: "O+" + cod,
+    //             saldo: 4245,
+    //             fecha: `${date.getFullYear()}-${date.getMonth() + 31}-${date.getDay() - 1} ${hour = hour + 1}:00:00`
+    //         })
+    //         .then((docRef) => {
+    //             console.log("Document written with ID: ", docRef.id);
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error adding document: ", error);
+    //         });
+    // }
+
+    // db.collection("medicion-telemetria")
+    //     .onSnapshot((resultados) => {
+    //         const datos = resultados.docs.map((doc) => ({
+    //             id: doc.id,
+    //             ...doc.data(),
+    //         }));
+    //         console.log(datos);
+    //     });
+
+    // * OBTENIENDO DATO INDIVIDUALES
+    db.collection("medicion-telemetria").where("codigo", "==", 101)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+</script>
+
+</html>
